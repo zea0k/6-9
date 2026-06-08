@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>資源有限下的「微型轉型」｜傳統產業導入低代碼 AI 工具研究</title>
+<meta name="description" content="探討台灣傳統產業如何透過低代碼 AI 工具，在資源有限下完成『微型轉型』的研究成果網站。" />
+<style>
+  :root{
+    --bg:#f7f8fb; --surface:#ffffff; --ink:#0f172a; --muted:#475569;
+    --brand:#1e3a8a; --brand-2:#0ea5e9; --line:#e2e8f0; --accent:#f59e0b;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+    line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--brand);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .container{max-width:1100px;margin:0 auto;padding:0 24px}
+  header.hero{
+    background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 60%,#0ea5e9 100%);
+    color:#fff;padding:80px 0 64px;position:relative;overflow:hidden
+  }
+  header.hero::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.15),transparent 50%)}
+  .hero-inner{position:relative;z-index:1}
+  .eyebrow{display:inline-block;padding:6px 14px;border:1px solid rgba(255,255,255,.4);
+    border-radius:999px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+  h1{font-size:clamp(28px,4vw,46px);margin:18px 0 12px;line-height:1.25;font-weight:800}
+  .subtitle{font-size:18px;opacity:.92;max-width:760px}
+  .hero-meta{margin-top:24px;font-size:14px;opacity:.85}
+  nav.topnav{background:#0f172a;color:#fff;position:sticky;top:0;z-index:10;
+    border-bottom:1px solid rgba(255,255,255,.08)}
+  nav.topnav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px;
+    max-width:1100px;margin:0 auto;padding:0 16px}
+  nav.topnav a{display:block;padding:14px 14px;color:#cbd5e1;font-size:14px;font-weight:500}
+  nav.topnav a:hover{color:#fff;text-decoration:none;background:rgba(255,255,255,.05)}
+  section{padding:72px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:30px;margin:0 0 8px;font-weight:800;color:var(--ink);
+    display:flex;align-items:center;gap:12px}
+  section h2::before{content:"";width:6px;height:28px;background:var(--brand);border-radius:3px}
+  .lead{color:var(--muted);margin:0 0 32px;max-width:820px}
+  .grid{display:grid;gap:24px}
+  .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .grid.cols-4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:24px;box-shadow:0 1px 2px rgba(15,23,42,.04);transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,23,42,.08)}
+  .member-photo{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;
+    background:#e2e8f0;margin-bottom:14px;border:1px solid var(--line)}
+  .member-name{font-size:19px;font-weight:700;margin:0 0 4px}
+  .member-role{color:var(--brand-2);font-size:13px;margin:0 0 12px;font-weight:600}
+  .member-bio{font-size:14px;color:var(--muted);line-height:1.75;text-align:justify}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;
+    padding:12px 22px;border-radius:8px;font-weight:600;font-size:15px;
+    transition:background .2s;border:none;cursor:pointer}
+  .btn:hover{background:#1e40af;text-decoration:none;color:#fff}
+  .btn.secondary{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+  .btn.secondary:hover{background:#eff6ff}
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+  .embed{width:100%;aspect-ratio:16/10;border:1px solid var(--line);border-radius:12px;
+    background:#0f172a;margin-top:8px}
+  .video-embed{width:100%;aspect-ratio:16/9;border-radius:12px;background:#000;display:block}
+  audio{width:100%;margin-top:12px}
+  .finding{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:10px;padding:22px}
+  .finding .num{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:.1em}
+  .finding h3{margin:6px 0 8px;font-size:18px}
+  .finding p{margin:0;color:var(--muted);font-size:14.5px}
+  .stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;margin-top:28px}
+  .stat .box{background:#0f172a;color:#fff;border-radius:12px;padding:22px;text-align:center}
+  .stat .num{font-size:34px;font-weight:800;color:#38bdf8;display:block}
+  .stat .label{font-size:13px;opacity:.85;margin-top:4px}
+  footer{background:#0f172a;color:#cbd5e1;padding:36px 0;text-align:center;font-size:14px}
+  footer a{color:#7dd3fc}
+  @media (max-width:640px){
+    section{padding:56px 0}
+    h1{font-size:28px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container hero-inner">
+    <span class="eyebrow">Final Research Project · 2025</span>
+    <h1>資源有限下的「微型轉型」<br/>台灣傳統產業導入低代碼 AI 工具之實務路徑與效能分析</h1>
+    <p class="subtitle">
+      面對人才斷層、預算受限與設備老舊的三重挑戰，本研究以低代碼 / 無代碼 AI 平台與「發現驅動型規劃 (DDP)」策略為核心，
+      驗證中小企業如何以「微型轉型」走出一條低成本、高效益的數位升級路徑。
+    </p>
+    <div class="hero-meta">國立屏東科技大學　企業管理學系｜研究團隊：謝佳和・李暐・卓翔賀・蔡宇晉</div>
+  </div>
+</header>
+
+<nav class="topnav">
+  <div class="container" style="padding:0">
+    <ul>
+      <li><a href="#intro">專題介紹</a></li>
+      <li><a href="#team">團隊成員</a></li>
+      <li><a href="#report">研究報告</a></li>
+      <li><a href="#slides">簡報成果</a></li>
+      <li><a href="#podcast">Podcast</a></li>
+      <li><a href="#video">Video Overview</a></li>
+      <li><a href="#findings">研究發現</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="intro">
+  <div class="container">
+    <h2>專題介紹</h2>
+    <p class="lead">
+      隨著 AI 技術爆發式成長，智慧製造已成為全球轉型核心，但台灣傳產與中小企業 (SMEs) 普遍面臨「資源貧乏」的困境。
+      本研究以混合研究法，結合對比實驗、個案研究與量化統計，驗證低代碼 AI 平台搭配 DDP 策略，
+      能否成為傳產跨越技術鴻溝的可行解方。
+    </p>
+    <div class="stat">
+      <div class="box"><span class="num">4.7×</span><div class="label">AI 部署效率提升</div></div>
+      <div class="box"><span class="num">90%</span><div class="label">瑕疵檢測準確率</div></div>
+      <div class="box"><span class="num">-50%</span><div class="label">數位行銷總成本</div></div>
+      <div class="box"><span class="num">95%</span><div class="label">魚苗計數準確率</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="container">
+    <h2>團隊成員</h2>
+    <p class="lead">四位來自國立屏東科技大學企業管理學系的成員，結合管理、數據分析、行銷與資訊應用背景共同投入研究。</p>
+    <div class="grid cols-4">
+      <div class="card">
+        <img class="member-photo" src="assets/members/member1.jpg" alt="謝佳和" />
+        <p class="member-name">謝佳和</p>
+        <p class="member-role">企業管理系一年級 B 班</p>
+        <p class="member-bio">
+          大家好，我叫謝佳和，目前就讀企業管理系企管一 B。個性認真負責、做事積極主動，遇到問題時喜歡透過思考與分析找出解決方法。
+          學習過程中除了努力充實專業知識外，也積極考取相關證照，目前已取得商用分析師、網頁設計丙級技術士以及軟體應用丙級技術士證照，
+          希望藉此提升專業能力與競爭力。我對商業管理與企業經營領域特別有興趣，喜歡研究市場趨勢、商業模式以及企業運作方式，
+          也希望未來能將數據分析與管理知識結合，協助企業做出更有效率的決策。我認為現代商業環境與資訊科技密不可分，
+          因此也持續學習資訊相關技能，培養跨領域能力。未來期許自己能成為兼具管理素養與資訊能力的人才，為職涯發展奠定良好基礎。
+        </p>
+      </div>
+      <div class="card">
+        <img class="member-photo" src="assets/members/member2.jpg" alt="李暐" />
+        <p class="member-name">李暐</p>
+        <p class="member-role">企業管理系</p>
+        <p class="member-bio">
+          目前就讀於企業管理學系，在學期間除了學習管理、行銷、財務等專業知識外，也積極培養數據分析與資訊技術能力，
+          希望成為兼具商業思維與數位能力的跨領域人才。已取得商用數據分析師證照，具備資料整理、分析及視覺化呈現能力，
+          能透過數據發掘問題並提供決策參考。為提升資訊應用能力，也考取電腦軟體應用乙級及網頁設計丙級證照，
+          具備基礎程式邏輯、網頁建置及資訊工具運用能力。學習過程中不僅重視專業技能的培養，
+          也透過課堂專題與團隊合作訓練溝通協調能力，學習如何整合不同意見並共同完成目標。
+          期望運用企管背景所建立的整體視野，結合數據分析與資訊技能，協助團隊提升工作效率與決策品質，為企業創造更多價值。
+        </p>
+      </div>
+      <div class="card">
+        <img class="member-photo" src="assets/members/member3.jpg" alt="卓翔賀" />
+        <p class="member-name">卓翔賀</p>
+        <p class="member-role">企業管理系一年級 B 班</p>
+        <p class="member-bio">
+          我叫卓翔賀，現就讀於企業管理 1 年 B 班。個性隨和但盡責，不會的事情給個大致方向就會嘗試解決處理，
+          就算沒有方向也會盡自己所能尋找出路，讓成品在期限前繳交。在課業上我會努力吸收專業知識並考取相關證照，
+          讓未來找工作時可以多一份底氣與一項專業，完善並充實自我履歷；目前已取得數據分析師證照，
+          學會初步看相關數據模型的結果，並運用於日常作業協助。目前感興趣的方向是行銷領域，
+          希望能學到未來進入公司可運用的技術與技巧，也希望把這堂課中學到的東西與行銷結合。
+          針對目前的目標持續努力學習相關知識，積極參與各種課堂活動與實例討論充實自我，期許未來能成為靈活運用工具的行銷人才。
+        </p>
+      </div>
+      <div class="card">
+        <img class="member-photo" src="assets/members/member4.jpg" alt="蔡宇晉" />
+        <p class="member-name">蔡宇晉</p>
+        <p class="member-role">企業管理系</p>
+        <p class="member-bio">
+          大家好，我是就讀國立屏東科技大學企業管理系的蔡宇晉。高中時期曾代表學校參加全國高中職技藝競賽商業類商業簡報項目，
+          訓練過程學習如何在短時間內解讀一份資料，並重整為大家可以快速理解的簡報與重點，
+          讓冗長的訊息能夠更快速吸收，也因此打下行銷與資料整合的能力。證照方面考取了電腦軟體乙級、丙級、門市服務丙級、
+          商業數據能力分析等；跨領域方面則取得商用數據分析師、溫室氣體盤查師以及產品碳足跡規劃師等相關證照，
+          這些經歷讓我從實務與理論兩端都建立基本概念。未來將著重於行銷與管理部分的精進培養，
+          將自身訓練成更成熟的企業人才，帶著更專業的知識和技能，為更多企業創造價值與可能性。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="report">
+  <div class="container">
+    <h2>研究報告</h2>
+    <p class="lead">完整研究報告，包含背景動機、文獻整理、研究方法、數據分析、討論與建議。</p>
+    <embed class="embed" src="assets/files/report.pdf#view=FitH" type="application/pdf" />
+    <div class="btn-row">
+      <a class="btn" href="assets/files/report.pdf" download>⬇ 下載研究報告 (PDF)</a>
+      <a class="btn secondary" href="assets/files/report.pdf" target="_blank">在新分頁開啟</a>
+    </div>
+  </div>
+</section>
+
+<section id="slides">
+  <div class="container">
+    <h2>簡報成果</h2>
+    <p class="lead">10 頁專題簡報，濃縮核心研究結論與數據成效。請將檔案命名為 <code>slides.pdf</code> 放入 <code>assets/files/</code>。</p>
+    <embed class="embed" src="assets/files/slides.pdf#view=FitH" type="application/pdf" />
+    <div class="btn-row">
+      <a class="btn" href="assets/files/slides.pdf" download>⬇ 下載簡報 (PDF)</a>
+      <a class="btn secondary" href="assets/files/slides.pdf" target="_blank">在新分頁開啟</a>
+    </div>
+  </div>
+</section>
+
+<section id="podcast">
+  <div class="container">
+    <h2>Podcast — 無程式碼 AI 助傳產轉型</h2>
+    <p class="lead">深度對談：拆解中小企業導入 AI 的三道高牆，並以「樂高積木式」無代碼平台破解轉型迷思。</p>
+    <audio controls src="assets/files/podcast.m4a"></audio>
+    <div class="btn-row">
+      <a class="btn" href="assets/files/podcast.m4a" download>⬇ 下載音檔 (M4A)</a>
+      <a class="btn secondary" href="assets/files/transcript.docx" download>⬇ 下載逐字稿 (Word)</a>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <div class="container">
+    <h2>Video Overview</h2>
+    <p class="lead">解碼數位轉型與 AI 整合：以影像快速掌握本研究的核心觀念與實務案例。</p>
+    <video class="video-embed" controls preload="metadata" src="assets/files/video.mp4"></video>
+    <div class="btn-row">
+      <a class="btn" href="assets/files/video.mp4" download>⬇ 下載影片 (MP4)</a>
+    </div>
+  </div>
+</section>
+
+<section id="findings">
+  <div class="container">
+    <h2>研究發現</h2>
+    <p class="lead">本研究綜整實證數據與個案訪談，歸納出以下五項關鍵發現。</p>
+    <div class="grid cols-2">
+      <div class="finding">
+        <span class="num">FINDING 01</span>
+        <h3>無代碼平台讓部署效率提升 4.7 倍</h3>
+        <p>傳統手動部署平均需 125.1 分鐘、約 65 條指令；AI No-Code 平台縮短至 26.4 分鐘、不到 20 個決策點，成功率接近 100%。</p>
+      </div>
+      <div class="finding">
+        <span class="num">FINDING 02</span>
+        <h3>非技術人員即可訓練工業級 AI 模型</h3>
+        <p>無 AI 背景員工以無代碼工具訓練的齒輪瑕疵檢測模型準確率達 90%、F1 分數 0.9388，優於人工目檢 (80%) 與傳統 AOI (70%)。</p>
+      </div>
+      <div class="finding">
+        <span class="num">FINDING 03</span>
+        <h3>數位行銷成本砍半、產能反升 50%</h3>
+        <p>S 公司導入 AI 協作後省去 100% 外包費用、總成本降低 50%，月產內容篇數從 4 篇提升至 6 篇，內部工時僅微幅下降。</p>
+      </div>
+      <div class="finding">
+        <span class="num">FINDING 04</span>
+        <h3>智慧養殖降低 60% 人力成本</h3>
+        <p>魚苗計數 AI 模型達 95% 等效準確率，作業效率提升超過 2 倍，直接緩解傳統養殖業的勞動力斷層問題。</p>
+      </div>
+      <div class="finding">
+        <span class="num">FINDING 05</span>
+        <h3>「人與組織文化」才是轉型成功基石</h3>
+        <p>多代理框架將 AI 公平性從 40.4% 提升至 71.6%；但真正關鍵仍是 HR 從行政轉為「變革推動者」，搭配領導者決心與 DDP 漸進策略。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2025 國立屏東科技大學企業管理學系｜資源有限下的「微型轉型」研究團隊<br/>
+    本網站採用 GitHub Pages 部署。
+  </div>
+</footer>
+
+</body>
+</html>
