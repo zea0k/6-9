@@ -8,7 +8,7 @@ research-site/
 └── assets/
     ├── members/
     │   ├── member1.jpg   ← 謝佳和
-    │   ├── member2.jpg   ← 李暐鵬
+    │   ├── member2.jpg   ← 李暐
     │   ├── member3.jpg   ← 卓翔賀
     │   └── member4.jpg   ← 蔡宇晉
     └── files/
